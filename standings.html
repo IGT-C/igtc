@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REGULATIONS - IGT-C</title>
+    <title>STANDINGS - IGT-C</title>
     <link rel="stylesheet" href="/igtc/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
@@ -14,10 +14,11 @@
             <h1 class="logo"><a href="/igtc/index.html">IGT-C</a></h1>
             <nav class="nav" id="nav-menu">
                 <a href="/igtc/about.html">ABOUT</a>
-                <a href="/igtc/standings.html">STANDINGS</a>
+                <a href="/igtc/standings.html" class="active">STANDINGS</a> 
                 <a href="/igtc/roster.html">ROSTER</a> 
                 <a href="/igtc/calendar-new.html">CALENDAR</a>
-                <a href="/igtc/regulations.html" class="active">REGULATIONS</a> </nav>
+                <a href="/igtc/regulations.html">REGULATIONS</a>
+            </nav>
             <div class="menu-toggle" id="menu-toggle">
                 <span></span>
                 <span></span>
@@ -26,59 +27,66 @@
         </div>
     </header>
 
-    <section id="regulations" class="section dark-bg" style="padding-top: 120px;">
-        <div class="container">
-            <h1 class="section-title">REGULATIONS</h1>
-            <p class="section-subtitle">Struktur kompetisi, teknis mobil, dan peraturan umum IGT-C.</p>
+    <section id="standings-page" class="section dark-bg">
+        <div class="container page-hero-top">
+            <h1 class="section-title">CURRENT STANDINGS</h1>
+            <p class="section-subtitle">Official Driver and Team Rankings. Data dimuat dari standings.json.</p>
             
-            <div class="regulation-item light-bg">
-                <h2>TEKNIS GT3 CARS & BoP</h2>
-                <p>Semua mobil harus sesuai dengan spesifikasi GT3 yang telah disetujui secara global. Untuk menjaga persaingan, Balance of Performance (BoP) diterapkan dan diatur ketat sebelum setiap balapan:</p>
-                <ul>
-                    <li>**BoP Berat (Weight Penalty):** Setiap mobil akan dikenakan penalti berat statis berdasarkan hasil evaluasi pabrikan.</li>
-                    <li>**BoP Tenaga (Power Reduction):** Pembatasan tenaga mesin (via air restrictor atau *turbo boost*) akan diumumkan per balapan.</li>
-                    <li>**Kontrol Traksi & ABS:** Diizinkan sesuai batas realistis GT3.</li>
-                </ul>
-            </div>
-            
-            <div class="reg-hr"></div>
+            <div class="standings-grid">
+                
+                <div class="standings-table" id="driver-standings-container">
+                    <h3>DRIVER STANDINGS</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="pos-col">POS</th>
+                                <th class="driver-col">DRIVER</th>
+                                <th class="team-col">TEAM</th>
+                                <th class="pts-col">PTS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="driver-standings-body">
+                            <tr><td colspan="4" class="text-center">Loading driver standings...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <div class="regulation-item light-bg">
-                <h2>TEAM & DRIVER CLASSES</h2>
-                <p>Kompetisi dibagi menjadi dua kelas utama untuk mengakomodasi berbagai tingkat keahlian:</p>
-                <ul>
-                    <li>**PRO Class:** Diisi oleh driver dengan rating tertinggi. Persaingan murni antara driver elite.</li>
-                    <li>**PRO-AM Class:** Setiap tim wajib memiliki setidaknya satu driver yang memiliki rating di bawah ambang batas yang ditentukan. Kelas ini memiliki kejuaraan terpisah.</li>
-                </ul>
-            </div>
-            
-            <div class="reg-hr"></div>
-            
-            <div class="regulation-item light-bg">
-                <h2>RACE WEEKEND FORMAT</h2>
-                <p>Setiap putaran balapan adalah ajang ketahanan 6 jam dengan jadwal akhir pekan yang padat:</p>
-                <ul>
-                    <li>**Practice (90 menit):** Sesi latihan bebas.</li>
-                    <li>**Qualifying (20 menit):** Menentukan *starting grid*.</li>
-                    <li>**Race (6 jam):** Wajib melakukan minimal 4 kali *pit stop* untuk bahan bakar dan ban.</li>
-                </ul>
-            </div>
+                <div class="standings-table" id="team-standings-container">
+                    <h3>TEAM STANDINGS</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="pos-col">POS</th>
+                                <th class="team-col">TEAM</th>
+                                <th class="car-col">CAR</th>
+                                <th class="pts-col">PTS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="team-standings-body">
+                            <tr><td colspan="4" class="text-center">Loading team standings...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
 
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Intercontinental Gran Touring Challenge. All Rights Reserved.</p>
+            <p>&copy; Intercontinental Gran Touring Challenge. All Rights Reserved.</p>
         </div>
     </footer>
-    
+
     <script src="/igtc/script.js"></script>
     <script>
-        document.getElementById('menu-toggle').onclick = function() {
-            document.getElementById('nav-menu').classList.toggle('active');
-            this.classList.toggle('active');
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStandings(); 
+            document.getElementById('menu-toggle').onclick = function() {
+                document.getElementById('nav-menu').classList.toggle('active');
+                this.classList.toggle('active');
+            }
+        });
     </script>
 </body>
 </html>
