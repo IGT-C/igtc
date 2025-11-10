@@ -267,7 +267,7 @@ a:hover {
     box-shadow: 0 0 15px rgba(220, 38, 38, 0.6);
 }
 
-/* STANDINGS SECTION */
+/* --- STANDINGS SECTION (Untuk standings.html) --- */
 .standings-grid {
     display: grid;
     grid-template-columns: 1fr; /* Default ke 1 kolom untuk mobile */
@@ -355,8 +355,8 @@ a:hover {
     line-height: 1; 
 }
 
-/* --- ROSTER CARD STYLES (Untuk roster.html) --- */
 
+/* --- ROSTER CARD STYLES (Untuk roster.html) --- */
 .page-hero-top {
     padding-top: 120px; 
     padding-bottom: 30px;
@@ -450,7 +450,7 @@ a:hover {
 }
 
 
-/* Untuk Halaman Kalender (CALENDAR.HTML) */
+/* --- CALENDAR STYLES (Untuk calendar.html) --- */
 .calendar-timeline {
     display: flex;
     flex-wrap: wrap;
@@ -517,7 +517,8 @@ a:hover {
     box-shadow: 0 8px 25px rgba(255, 204, 0, 0.8);
 }
 
-/* Untuk Halaman Regulasi (REGULATIONS.HTML) */
+
+/* --- REGULATIONS STYLES (Untuk regulations.html & about.html) --- */
 .regulation-item {
     margin-bottom: 50px;
     padding: 20px;
@@ -528,7 +529,7 @@ a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.regulation-item h2 {
+.regulation-item h2, .regulation-item h3 {
     margin-top: 0;
     margin-bottom: 20px;
 }
@@ -545,54 +546,68 @@ a:hover {
     margin: 40px 0;
 }
 
-/* LINK CARDS (di index.html untuk Regulasi) */
-.grid-3 {
+
+/* --- NEW STYLES FOR NEWS SECTION (index.html) --- */
+.news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-top: 40px;
 }
 
-.feature-card {
-    background-color: #2a2a2a;
+.news-card {
+    display: block;
+    background-color: #ffffff; /* Latar belakang putih */
     border-radius: 8px;
-    padding: 30px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: left;
+    color: var(--dark-text); /* Penting agar teks bisa dibaca di light-bg */
 }
 
-.feature-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    border-color: var(--primary-color);
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
-.feature-card .icon-large {
-    font-size: 3.5rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
+.news-card-img-placeholder {
+    height: 180px;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 0.9rem;
+    font-style: italic;
+    border-bottom: 3px solid var(--primary-color);
 }
 
-.feature-card h3 {
+.news-card-content {
+    padding: 20px;
+    color: var(--dark-text);
+}
+
+.news-card-content h3 {
     font-family: var(--font-rajdhani);
-    font-size: 1.6rem;
-    color: var(--light-text);
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.news-date {
+    font-size: 0.8rem;
+    color: #888;
     margin-bottom: 10px;
     text-transform: uppercase;
+    font-weight: 600;
 }
 
-.feature-card p {
+.news-card-content p {
     font-size: 0.95rem;
-    color: #ccc;
-}
-
-.red-glow-border {
-    border-color: var(--primary-color) !important;
-}
-.red-glow-border:hover {
-    box-shadow: 0 0 20px rgba(220, 38, 38, 0.8) !important;
+    margin: 0;
 }
 
 
@@ -660,6 +675,12 @@ footer {
     }
 }
 
+@media (max-width: 600px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 480px) {
     .hero-content h1 {
         font-size: 2rem;
@@ -700,4 +721,5 @@ footer {
         width: 80%;
         max-width: 300px;
     }
-}
+        }
+                                
