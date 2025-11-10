@@ -80,8 +80,9 @@
 
     <script src="/igtc/script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            loadStandings(); 
+        document.addEventListener('DOMContentLoaded', function() { 
+            // Fungsi Standings (jika ada di script.js)
+            // loadStandings(); 
             document.getElementById('menu-toggle').onclick = function() {
                 document.getElementById('nav-menu').classList.toggle('active');
                 this.classList.toggle('active');
