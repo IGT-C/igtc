@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CURRENT STANDINGS - IGT-C</title>
-    <base href="/igtc/"> 
-    <link rel="stylesheet" href="style.css">
+    <title>STANDINGS - IGT-C</title>
+    <link rel="stylesheet" href="/igtc/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
     <header id="navbar" class="header">
         <div class="container nav-container">
-            <h1 class="logo"><a href="index.html">IGT-C</a></h1>
+            <h1 class="logo"><a href="/igtc/index.html">IGT-C</a></h1>
             <nav class="nav" id="nav-menu">
-                <a href="about.html">ABOUT</a>
-                <a href="standings.html" class="active">STANDINGS</a>
-                <a href="roster.html">ROSTER</a> 
-                <a href="calendar.html">CALENDAR</a>
-                <a href="regulations.html">REGULATIONS</a>
+                <a href="/igtc/about.html">ABOUT</a>
+                <a href="/igtc/standings.html" class="active">STANDINGS</a> <a href="/igtc/roster.html">ROSTER</a> 
+                <a href="/igtc/calendar.html">CALENDAR</a>
+                <a href="/igtc/regulations.html">REGULATIONS</a>
             </nav>
             <div class="menu-toggle" id="menu-toggle">
                 <span></span>
@@ -28,14 +26,14 @@
         </div>
     </header>
 
-    <section id="standings" class="section dark-bg" style="padding-top: 120px;">
-        <div class="container">
+    <section id="standings-page" class="section dark-bg">
+        <div class="container page-hero-top">
             <h1 class="section-title">CURRENT STANDINGS</h1>
-            <p class="section-subtitle">Official Driver and Team Rankings after the latest race.</p>
+            <p class="section-subtitle">Official Driver and Team Rankings. Data dimuat dari standings.json.</p>
             
-            <div class="standings-grid grid-2">
+            <div class="standings-grid">
                 
-                <div class="standings-table">
+                <div class="standings-table" id="driver-standings-container">
                     <h3>DRIVER STANDINGS</h3>
                     <table>
                         <thead>
@@ -47,13 +45,12 @@
                             </tr>
                         </thead>
                         <tbody id="driver-standings-body">
-                            <tr><td colspan="4">Loading Driver Standings...</td></tr>
+                            <tr><td colspan="4" class="text-center">Loading driver standings...</td></tr>
                         </tbody>
                     </table>
                 </div>
 
-                
-                <div class="standings-table">
+                <div class="standings-table" id="team-standings-container">
                     <h3>TEAM STANDINGS</h3>
                     <table>
                         <thead>
@@ -65,20 +62,33 @@
                             </tr>
                         </thead>
                         <tbody id="team-standings-body">
-                            <tr><td colspan="4">Loading Team Standings...</td></td></tr>
+                            <tr><td colspan="4" class="text-center">Loading team standings...</td></tr>
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
     </section>
-    
+
     <footer>
         <div class="container">
-            <p>&copy; Intercontinental Gran Touring Challenge. All Rights Reserved.</p>
+            <p>&copy; 2026 Intercontinental Gran Touring Challenge. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="/igtc/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Panggil fungsi untuk memuat standings saat halaman dimuat
+            loadStandings(); 
+        
+            // Tambahkan event listener untuk mobile menu
+            document.getElementById('menu-toggle').onclick = function() {
+                document.getElementById('nav-menu').classList.toggle('active');
+                this.classList.toggle('active');
+            }
+        });
+    </script>
 </body>
 </html>
