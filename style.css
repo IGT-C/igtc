@@ -1,0 +1,703 @@
+/* ROOT VARIABLES & GENERAL STYLES */
+:root {
+    --primary-color: #E2002B; /* Merah untuk aksen */
+    --secondary-color: #000000; /* Hitam gelap */
+    --dark-color: #1a1a1a; /* Lebih terang dari secondary untuk latar belakang */
+    --light-bg: #f5f5f5; /* Latar belakang bagian terang */
+    --light-text: #ffffff;
+    --dark-text: #333333;
+    --font-orbitron: 'Orbitron', sans-serif;
+    --font-rajdhani: 'Rajdhani', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-inter);
+    color: var(--light-text);
+    background-color: var(--dark-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section {
+    padding: 80px 0;
+}
+
+.dark-bg {
+    background-color: var(--dark-color);
+}
+
+.light-bg {
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+}
+
+.section-title {
+    font-family: var(--font-orbitron);
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.section-subtitle {
+    font-family: var(--font-rajdhani);
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #ccc; /* Untuk dark-bg */
+}
+
+.light-bg .section-subtitle {
+    color: #666; /* Untuk light-bg */
+}
+
+.red-text {
+    color: var(--primary-color);
+}
+
+.text-center {
+    text-align: center;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #ff5e5e;
+}
+
+/* HEADER & NAVIGATION */
+.header {
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin: 0;
+    font-family: var(--font-orbitron);
+    font-size: 2.2rem;
+    color: var(--light-text);
+    text-transform: uppercase;
+}
+
+.logo a {
+    color: var(--light-text);
+}
+
+.nav a {
+    color: var(--light-text);
+    margin-left: 30px;
+    font-size: 1.1rem;
+    font-family: var(--font-rajdhani);
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s;
+}
+
+.nav a:hover::after,
+.nav a.active::after {
+    width: 100%;
+}
+
+/* Mobile Navigation */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    height: 3px;
+    width: 25px;
+    background-color: var(--light-text);
+    margin-bottom: 5px;
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px; /* Adjust based on header height */
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        padding: 20px 0;
+        border-top: 1px solid var(--primary-color);
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .nav a {
+        margin: 10px 20px;
+        text-align: center;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+}
+
+
+/* HERO SECTION */
+.hero {
+    background: url('assets/img/hero-bg.jpg') no-repeat center center/cover; 
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--light-text);
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-family: var(--font-orbitron);
+    font-size: 4.5rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content p {
+    font-family: var(--font-rajdhani);
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+}
+
+/* CTA BUTTONS */
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-family: var(--font-rajdhani);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.primary-cta {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border: 2px solid var(--primary-color);
+}
+
+.primary-cta:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.6);
+}
+
+.secondary-cta {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    margin-left: 20px;
+}
+
+.secondary-cta:hover {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    box-shadow: 0 0 15px rgba(220, 38, 38, 0.6);
+}
+
+/* STANDINGS SECTION */
+.standings-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default ke 1 kolom untuk mobile */
+    gap: 40px;
+    margin-top: 30px;
+}
+
+@media (min-width: 992px) {
+    .standings-grid {
+        grid-template-columns: 1fr 1fr; /* 2 kolom untuk desktop */
+    }
+}
+
+.standings-table {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.standings-table h3 {
+    font-family: var(--font-rajdhani);
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    background-color: #000;
+    border-bottom: 1px solid var(--primary-color);
+    text-transform: uppercase;
+}
+
+.standings-table table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--light-text);
+    font-family: var(--font-inter);
+}
+
+.standings-table th, .standings-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.standings-table thead th {
+    background-color: #333;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #aaa;
+    font-weight: 600;
+}
+
+.standings-table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.standings-table tbody tr:hover {
+    background-color: rgba(220, 38, 38, 0.1);
+}
+
+.standings-table tbody tr:nth-child(even) {
+    background-color: #2e2e2e;
+}
+
+.standings-table tbody tr:nth-child(odd) {
+    background-color: #383838;
+}
+
+/* Kolom Spesifik */
+.pos-col { width: 10%; text-align: center; font-weight: bold; color: var(--primary-color); }
+.driver-col, .team-col { width: 40%; }
+.car-col { width: 30%; }
+.pts-col { width: 10%; text-align: right; font-weight: bold; }
+
+/* Driver & Nationality */
+.driver-info {
+    display: flex;
+    align-items: center;
+}
+
+.nationality-flag {
+    margin-right: 10px;
+    font-size: 1.5rem; /* Ukuran bendera */
+    line-height: 1; 
+}
+
+/* --- ROSTER CARD STYLES (Untuk roster.html) --- */
+
+.page-hero-top {
+    padding-top: 120px; 
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.roster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.driver-card {
+    background-color: var(--dark-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-left: 5px solid var(--primary-color);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+    color: var(--light-text);
+}
+
+.light-bg .driver-card {
+    background-color: #f0f0f0;
+    color: var(--dark-text);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.driver-card:hover {
+    transform: translateY(-5px);
+}
+
+.driver-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.light-bg .driver-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.driver-number {
+    font-family: var(--font-orbitron);
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    font-weight: 900;
+}
+
+.nationality-flag-large {
+    font-size: 3.5rem; 
+    line-height: 1;
+}
+
+.driver-details p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.driver-name {
+    font-family: var(--font-rajdhani);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.driver-team {
+    color: #ccc;
+    font-weight: 500;
+}
+.light-bg .driver-team {
+    color: #555;
+}
+
+.driver-class strong {
+    color: var(--primary-color);
+}
+
+.placeholder-note {
+    text-align: center;
+    grid-column: 1 / -1;
+    color: #aaa;
+    font-style: italic;
+    padding: 20px;
+}
+
+
+/* Untuk Halaman Kalender (CALENDAR.HTML) */
+.calendar-timeline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    padding: 50px 0;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, #333, var(--primary-color), #333);
+    z-index: 0;
+}
+
+.race-card {
+    background-color: #2a2a2a;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px;
+    width: 200px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.race-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.7);
+}
+
+.race-flag {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.circuit-name {
+    font-family: var(--font-orbitron);
+    font-size: 1.4rem;
+    color: var(--light-text);
+    margin: 10px 0 5px 0;
+    text-transform: uppercase;
+}
+
+.race-duration {
+    font-family: var(--font-inter);
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.final-race {
+    border-color: #ffcc00; 
+    box-shadow: 0 4px 15px rgba(255, 204, 0, 0.5);
+}
+
+.final-race:hover {
+    box-shadow: 0 8px 25px rgba(255, 204, 0, 0.8);
+}
+
+/* Untuk Halaman Regulasi (REGULATIONS.HTML) */
+.regulation-item {
+    margin-bottom: 50px;
+    padding: 20px;
+    border-left: 5px solid var(--primary-color);
+    background-color: #f0f0f0; 
+    color: var(--dark-text);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.regulation-item h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.regulation-item ul {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.reg-hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--primary-color), rgba(0, 0, 0, 0));
+    margin: 40px 0;
+}
+
+/* LINK CARDS (di index.html untuk Regulasi) */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.feature-card {
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    border-color: var(--primary-color);
+}
+
+.feature-card .icon-large {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    font-family: var(--font-rajdhani);
+    font-size: 1.6rem;
+    color: var(--light-text);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.red-glow-border {
+    border-color: var(--primary-color) !important;
+}
+.red-glow-border:hover {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.8) !important;
+}
+
+
+/* FOOTER */
+footer {
+    background-color: #000;
+    color: #888;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+    .hero-content p {
+        font-size: 1.5rem;
+    }
+    .section-title {
+        font-size: 2.2rem;
+    }
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    .secondary-cta {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    .standings-table th, .standings-table td {
+        padding: 10px;
+    }
+    .standings-table thead th {
+        font-size: 0.8rem;
+    }
+    .driver-info span {
+        font-size: 1.3rem;
+    }
+    .driver-info strong {
+        font-size: 0.9rem;
+    }
+    .standings-table tbody td {
+        font-size: 0.9rem;
+    }
+    .driver-number {
+        font-size: 2rem;
+    }
+    .nationality-flag-large {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .cta-button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .nav-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .logo {
+        margin-bottom: 15px;
+    }
+    .menu-toggle {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+    }
+    /* Untuk kalender */
+    .calendar-timeline {
+        flex-direction: column;
+        align-items: center;
+    }
+    .timeline-line {
+        width: 2px;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(to bottom, #333, var(--primary-color), #333);
+    }
+    .race-card {
+        width: 80%;
+        max-width: 300px;
+    }
+}
