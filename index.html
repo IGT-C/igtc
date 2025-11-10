@@ -89,10 +89,12 @@
     
     <script src="/igtc/script.js"></script>
     <script>
-        document.getElementById('menu-toggle').onclick = function() {
-            document.getElementById('nav-menu').classList.toggle('active');
-            this.classList.toggle('active');
-        }
+        document.addEventListener('DOMContentLoaded', function() { 
+            document.getElementById('menu-toggle').onclick = function() {
+                document.getElementById('nav-menu').classList.toggle('active');
+                this.classList.toggle('active');
+            }
+        });
     </script>
 </body>
 </html>
