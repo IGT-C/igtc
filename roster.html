@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROSTER - IGT-C</title>
-    <base href="/igtc/"> 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/igtc/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
     <header id="navbar" class="header">
         <div class="container nav-container">
-            <h1 class="logo"><a href="index.html">IGT-C</a></h1>
+            <h1 class="logo"><a href="/igtc/index.html">IGT-C</a></h1>
             
             <nav class="nav" id="nav-menu">
-                <a href="about.html">ABOUT</a>
-                <a href="standings.html">STANDINGS</a>
-                <a href="roster.html" class="active">ROSTER</a> <a href="calendar.html">CALENDAR</a>
-                <a href="regulations.html">REGULATIONS</a>
+                <a href="/igtc/about.html">ABOUT</a>
+                <a href="/igtc/standings.html">STANDINGS</a>
+                <a href="/igtc/roster.html" class="active">ROSTER</a> <a href="/igtc/calendar.html">CALENDAR</a>
+                <a href="/igtc/regulations.html">REGULATIONS</a>
             </nav>
             
             <div class="menu-toggle" id="menu-toggle">
@@ -86,5 +85,23 @@
                     </div>
                 </div>
 
-                <p class="placeholder-note">**Anda bisa menambah atau mengganti driver di atas dengan data IGT-C yang sebenarnya.**</p
-                                                                                                                                       
+                <p class="placeholder-note">**Anda bisa menambah atau mengganti driver di atas dengan data IGT-C yang sebenarnya.**</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Intercontinental Gran Touring Challenge. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/igtc/script.js"></script>
+    <script>
+        document.getElementById('menu-toggle').onclick = function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+            this.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
