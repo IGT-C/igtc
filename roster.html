@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRIVER ROSTER - Intercontinental Gran Touring Challenge</title>
+    <title>ROSTER - IGT-C</title>
     <base href="/igtc/"> 
-    
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
 </head>
 <body>
-
     <header id="navbar" class="header">
         <div class="container nav-container">
             <h1 class="logo"><a href="index.html">IGT-C</a></h1>
+            
             <nav class="nav" id="nav-menu">
-                <a href="index.html#about">ABOUT</a>
-                <a href="index.html#standings">STANDINGS</a>
-                <a href="roster.html" class="active">ROSTER</a>
-                <a href="calendar.html">CALENDAR</a>
+                <a href="about.html">ABOUT</a>
+                <a href="standings.html">STANDINGS</a>
+                <a href="roster.html" class="active">ROSTER</a> <a href="calendar.html">CALENDAR</a>
                 <a href="regulations.html">REGULATIONS</a>
             </nav>
+            
             <div class="menu-toggle" id="menu-toggle">
                 <span></span>
                 <span></span>
@@ -30,41 +29,62 @@
         </div>
     </header>
 
-    <main class="content-roster">
-        <section class="page-hero-top dark-bg">
-            <div class="container">
-                <h1 class="section-title">2026 DRIVER & TEAM ROSTER</h1>
-                <p class="section-subtitle">The full list of 18 drivers and 9 teams competing in the IGT-C. Structure: 1 PRO and 1 PRO-AM driver per team.</p>
-            </div>
-        </section>
-
-        <section id="pro-roster-section" class="section light-bg">
-            <div class="container">
-                <h2 class="section-title red-text">PRO CLASS DRIVERS</h2>
-                <p class="section-subtitle">Top-tier professional drivers.</p>
-                <div class="roster-grid" id="pro-roster">
-                    <p class="placeholder-note">Loading PRO drivers...</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="proam-roster-section" class="section dark-bg">
-            <div class="container">
-                <h2 class="section-title">PRO-AM CLASS DRIVERS</h2>
-                <p class="section-subtitle">Amateur drivers paired with professionals.</p>
-                <div class="roster-grid" id="pro-am-roster">
-                    <p class="placeholder-note">Loading PRO-AM drivers...</p>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Intercontinental Gran Touring Challenge. All Rights Reserved.</p>
+    <section id="roster" class="section dark-bg">
+        <div class="container page-hero-top">
+            <h1 class="section-title">DRIVER & TEAM ROSTER</h1>
+            <p class="section-subtitle">The full list of 18 drivers and their GT3 cars competing this season.</p>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
-</body>
-</html>
+        <div class="container">
+            <div class="roster-grid">
+                
+                <div class="driver-card">
+                    <div class="driver-header">
+                        <span class="driver-number red-text">#07</span>
+                        <span class="nationality-flag-large">🇪🇸</span>
+                    </div>
+                    <div class="driver-details">
+                        <p class="driver-name">ANTONIO LOPEZ</p>
+                        <p class="driver-team">Team Black Mamba Racing</p>
+                        <p class="driver-class">Car: <strong>Ferrari 296 GT3</strong></p>
+                    </div>
+                </div>
+
+                <div class="driver-card">
+                    <div class="driver-header">
+                        <span class="driver-number red-text">#16</span>
+                        <span class="nationality-flag-large">🇩🇪</span>
+                    </div>
+                    <div class="driver-details">
+                        <p class="driver-name">MAXIMILIAN SCHULZ</p>
+                        <p class="driver-team">Redline Motorsports</p>
+                        <p class="driver-class">Car: <strong>Porsche 911 GT3 R</strong></p>
+                    </div>
+                </div>
+
+                <div class="driver-card">
+                    <div class="driver-header">
+                        <span class="driver-number red-text">#33</span>
+                        <span class="nationality-flag-large">🇬🇧</span>
+                    </div>
+                    <div class="driver-details">
+                        <p class="driver-name">JAKE MILLER</p>
+                        <p class="driver-team">British Racing Dynamics</p>
+                        <p class="driver-class">Car: <strong>Mercedes-AMG GT3</strong></p>
+                    </div>
+                </div>
+
+                <div class="driver-card">
+                    <div class="driver-header">
+                        <span class="driver-number red-text">#55</span>
+                        <span class="nationality-flag-large">🇺🇸</span>
+                    </div>
+                    <div class="driver-details">
+                        <p class="driver-name">SARAH CHEN</p>
+                        <p class="driver-team">North American GT Team</p>
+                        <p class="driver-class">Car: <strong>BMW M4 GT3</strong></p>
+                    </div>
+                </div>
+
+                <p class="placeholder-note">**Anda bisa menambah atau mengganti driver di atas dengan data IGT-C yang sebenarnya.**</p
+                                                                                                                                       
