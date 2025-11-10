@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROSTER - IGT-C</title>
-    <link rel="stylesheet" href="/igtc/style.css">
+    <title>STANDINGS - IGT-C</title>
+    <link rel="stylesheet" href="/igtc/style.css?v=2">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
 </head>
@@ -12,15 +12,13 @@
     <header id="navbar" class="header">
         <div class="container nav-container">
             <h1 class="logo"><a href="/igtc/index.html">IGT-C</a></h1>
-            
             <nav class="nav" id="nav-menu">
                 <a href="/igtc/about.html">ABOUT</a>
-                <a href="/igtc/standings.html">STANDINGS</a>
-                <a href="/igtc/roster.html" class="active">ROSTER</a>
+                <a href="/igtc/standings.html" class="active">STANDINGS</a> 
+                <a href="/igtc/roster.html">ROSTER</a> 
                 <a href="/igtc/calendar-new.html">CALENDAR</a>
                 <a href="/igtc/regulations.html">REGULATIONS</a>
             </nav>
-            
             <div class="menu-toggle" id="menu-toggle">
                 <span></span>
                 <span></span>
@@ -29,64 +27,47 @@
         </div>
     </header>
 
-    <section id="roster" class="section dark-bg">
+    <section id="standings-page" class="section dark-bg">
         <div class="container page-hero-top">
-            <h1 class="section-title">DRIVER & TEAM ROSTER</h1>
-            <p class="section-subtitle">The full list of 18 drivers and their GT3 cars competing this season.</p>
-        </div>
-
-        <div class="container">
-            <div class="roster-grid">
+            <h1 class="section-title">CURRENT STANDINGS</h1>
+            <p class="section-subtitle">Official Driver and Team Rankings. Data dimuat dari standings.json.</p>
+            
+            <div class="standings-grid">
                 
-                <div class="driver-card">
-                    <div class="driver-header">
-                        <span class="driver-number red-text">#07</span>
-                        <span class="nationality-flag-large">🇪🇸</span>
-                    </div>
-                    <div class="driver-details">
-                        <p class="driver-name">ANTONIO LOPEZ</p>
-                        <p class="driver-team">Team Black Mamba Racing</p>
-                        <p class="driver-class">Car: <strong>Ferrari 296 GT3</strong></p>
-                    </div>
+                <div class="standings-table" id="driver-standings-container">
+                    <h3>DRIVER STANDINGS</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="pos-col">POS</th>
+                                <th class="driver-col">DRIVER</th>
+                                <th class="team-col">TEAM</th>
+                                <th class="pts-col">PTS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="driver-standings-body">
+                            <tr><td colspan="4" class="text-center">Loading driver standings...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="driver-card">
-                    <div class="driver-header">
-                        <span class="driver-number red-text">#16</span>
-                        <span class="nationality-flag-large">🇩🇪</span>
-                    </div>
-                    <div class="driver-details">
-                        <p class="driver-name">MAXIMILIAN SCHULZ</p>
-                        <p class="driver-team">Redline Motorsports</p>
-                        <p class="driver-class">Car: <strong>Porsche 911 GT3 R</strong></p>
-                    </div>
+                <div class="standings-table" id="team-standings-container">
+                    <h3>TEAM STANDINGS</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="pos-col">POS</th>
+                                <th class="team-col">TEAM</th>
+                                <th class="car-col">CAR</th>
+                                <th class="pts-col">PTS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="team-standings-body">
+                            <tr><td colspan="4" class="text-center">Loading team standings...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="driver-card">
-                    <div class="driver-header">
-                        <span class="driver-number red-text">#33</span>
-                        <span class="nationality-flag-large">🇬🇧</span>
-                    </div>
-                    <div class="driver-details">
-                        <p class="driver-name">JAKE MILLER</p>
-                        <p class="driver-team">British Racing Dynamics</p>
-                        <p class="driver-class">Car: <strong>Mercedes-AMG GT3</strong></p>
-                    </div>
-                </div>
-
-                <div class="driver-card">
-                    <div class="driver-header">
-                        <span class="driver-number red-text">#55</span>
-                        <span class="nationality-flag-large">🇺🇸</span>
-                    </div>
-                    <div class="driver-details">
-                        <p class="driver-name">SARAH CHEN</p>
-                        <p class="driver-team">North American GT Team</p>
-                        <p class="driver-class">Car: <strong>BMW M4 GT3</strong></p>
-                    </div>
-                </div>
-
-                <p class="placeholder-note">**Anda bisa menambah atau mengganti driver di atas dengan data IGT-C yang sebenarnya.**</p>
             </div>
         </div>
     </section>
@@ -97,15 +78,6 @@
         </div>
     </footer>
 
-    <script src="/igtc/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() { 
-            document.getElementById('menu-toggle').onclick = function() {
-                document.getElementById('nav-menu').classList.toggle('active');
-                this.classList.toggle('active');
-            }
-        });
-    </script>
+    <script src="/igtc/script.js?v=2"></script>
 </body>
-                                                                  </html>
-                                                                  
+</html>
