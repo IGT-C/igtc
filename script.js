@@ -1,20 +1,24 @@
+// script.js
+
 // --- FUNGSI UTAMA UNTUK MENGAMBIL DATA ---
 function updateData() {
-    // Path akan otomatis mengikuti <base href="/igtc/">
-    fetch('standings.json')
+    // Menggunakan path mutlak untuk keamanan dan konsistensi
+    fetch('/igtc/standings.json') 
         .then(response => {
             if (!response.ok) {
+                // Memberikan pesan error yang jelas jika fetch gagal
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            // Logika hanya berjalan jika elemen ada di halaman saat ini
+            // Logika Standings (untuk standings.html)
             if (document.getElementById('driver-standings-body')) {
-                renderStandings(data); // Fungsi untuk index.html
+                renderStandings(data); 
             }
-            if (document.getElementById('pro-roster')) {
-                renderRoster(data.roster); // Fungsi untuk roster.html
+            // Logika Roster (untuk roster.html)
+            if (document.getElementById('team-roster-container')) {
+                renderTeamRoster(data.roster); 
             }
         })
         .catch(error => {
@@ -25,105 +29,119 @@ function updateData() {
             const teamStandingsBody = document.getElementById('team-standings-body');
             if (teamStandingsBody) teamStandingsBody.innerHTML = '<tr><td colspan="4">Failed to load team standings.</td></tr>';
             // Handling error untuk Roster
-            const proContainer = document.getElementById('pro-roster');
-            if (proContainer) proContainer.innerHTML = '<p class="placeholder-note">Failed to load PRO roster data.</p>';
-            const proAmContainer = document.getElementById('pro-am-roster');
-            if (proAmContainer) proAmContainer.innerHTML = '<p class="placeholder-note">Failed to load PRO-AM roster data.</p>';
+            const container = document.getElementById('team-roster-container');
+            const loadingMessage = document.getElementById('loading-roster-message');
+            if (loadingMessage) loadingMessage.remove(); 
+            if (container) container.innerHTML = '<p class="placeholder-note">Failed to load Roster data. Please check standings.json path.</p>';
         });
 }
 
 
-// --- 1. STANDINGS RENDERING (Untuk index.html) ---
+// --- 1. STANDINGS RENDERING (Untuk standings.html) ---
 
 function renderStandings(data) {
     // Render Driver Standings
     const driverStandingsBody = document.getElementById('driver-standings-body');
-    const sortedDrivers = data.drivers.sort((a, b) => b.points - a.points);
-    
-    driverStandingsBody.innerHTML = '';
-    sortedDrivers.forEach((driver, index) => {
-        const row = driverStandingsBody.insertRow();
-        row.innerHTML = `
-            <td class="pos-col">${index + 1}</td>
-            <td class="driver-col">
-                <div class="driver-info">
-                    <span class="nationality-flag">${driver.nationality}</span>
-                    <strong>${driver.name.toUpperCase()}</strong>
-                </div>
-            </td>
-            <td class="team-col">${driver.team}</td>
-            <td class="pts-col">${driver.points}</td>
-        `;
-    });
+    if (driverStandingsBody) {
+        const sortedDrivers = data.drivers.sort((a, b) => b.points - a.points);
+        driverStandingsBody.innerHTML = '';
+        sortedDrivers.forEach((driver, index) => {
+            const row = driverStandingsBody.insertRow();
+            row.innerHTML = `
+                <td class="pos-col">${index + 1}</td>
+                <td class="driver-col">
+                    <div class="driver-info">
+                        <span class="nationality-flag">${driver.nationality}</span>
+                        <strong>${driver.name.toUpperCase()}</strong>
+                    </div>
+                </td>
+                <td class="team-col">${driver.team}</td>
+                <td class="pts-col">${driver.points}</td>
+            `;
+        });
+    }
 
     // Render Team Standings
     const teamStandingsBody = document.getElementById('team-standings-body');
-    const sortedTeams = data.teams.sort((a, b) => b.points - a.points);
-
-    teamStandingsBody.innerHTML = '';
-    sortedTeams.forEach((team, index) => {
-        const row = teamStandingsBody.insertRow();
-        row.innerHTML = `
-            <td class="pos-col">${index + 1}</td>
-            <td class="team-col"><strong>${team.name.toUpperCase()}</strong></td>
-            <td class="car-col">${team.car}</td>
-            <td class="pts-col">${team.points}</td>
-        `;
-    });
+    if (teamStandingsBody) {
+        const sortedTeams = data.teams.sort((a, b) => b.points - a.points);
+        teamStandingsBody.innerHTML = '';
+        sortedTeams.forEach((team, index) => {
+            const row = teamStandingsBody.insertRow();
+            row.innerHTML = `
+                <td class="pos-col">${index + 1}</td>
+                <td class="team-col"><strong>${team.name.toUpperCase()}</strong></td>
+                <td class="car-col">${team.car}</td>
+                <td class="pts-col">${team.points}</td>
+            `;
+        });
+    }
 }
 
 
-// --- 2. ROSTER RENDERING (Untuk roster.html) ---
+// --- 2. ROSTER RENDERING (FUNGSI BARU: Per Tim, Untuk roster.html) ---
 
-// KARTU BARU: Tanpa foto pembalap, diganti Bendera
 function createDriverCard(driver) {
     const driverCard = document.createElement('div');
     driverCard.className = 'driver-card';
     
     driverCard.innerHTML = `
         <div class="driver-header">
-            <span class="driver-number">#${driver.number}</span>
+            <span class="driver-number red-text">#${driver.number}</span>
             <span class="nationality-flag-large">${driver.nationality}</span>
         </div>
         <div class="driver-details">
             <p class="driver-name">${driver.name.toUpperCase()}</p>
-            <p class="driver-team">${driver.team}</p>
-            <p class="driver-car">Car: ${driver.car}</p>
+            <p class="driver-team-car">${driver.car}</p>
             <p class="driver-class">Class: <strong>${driver.class}</strong></p>
         </div>
     `;
     return driverCard;
 }
 
-function renderRoster(rosterData) {
-    const proContainer = document.getElementById('pro-roster');
-    const proAmContainer = document.getElementById('pro-am-roster');
+function renderTeamRoster(rosterData) {
+    const container = document.getElementById('team-roster-container');
+    const loadingMessage = document.getElementById('loading-roster-message');
     
-    if (!proContainer || !proAmContainer) return; 
+    if (loadingMessage) loadingMessage.remove(); 
+    if (!container) return; 
 
-    proContainer.innerHTML = '';
-    proAmContainer.innerHTML = '';
+    // 1. KELOMPOKKAN DRIVER BERDASARKAN TIM (Grouping Logic)
+    const teams = rosterData.reduce((acc, driver) => {
+        if (!acc[driver.team]) {
+            acc[driver.team] = {
+                name: driver.team,
+                car: driver.car, 
+                drivers: []
+            };
+        }
+        acc[driver.team].drivers.push(driver);
+        return acc;
+    }, {});
     
-    const proDrivers = rosterData.filter(driver => driver.class === 'PRO');
-    const proAmDrivers = rosterData.filter(driver => driver.class === 'PRO-AM');
+    container.innerHTML = ''; // Kosongkan container utama
+    
+    // 2. RENDER SETIAP GRUP TIM
+    Object.values(teams).forEach(team => {
+        const teamGroup = document.createElement('div');
+        teamGroup.className = 'team-group';
+        
+        // Header Tim dan Info
+        teamGroup.innerHTML = `
+            <h2>${team.name.toUpperCase()}</h2>
+            <p class="team-info">Car: <strong class="red-text">${team.car}</strong></p>
+            <div class="team-driver-grid"></div>
+        `;
 
-    // Render PRO Drivers
-    if (proDrivers.length > 0) {
-        proDrivers.forEach(driver => {
-            proContainer.appendChild(createDriverCard(driver));
+        const driverGrid = teamGroup.querySelector('.team-driver-grid');
+        
+        // Kartu Driver di dalam Tim
+        team.drivers.forEach(driver => {
+            driverGrid.appendChild(createDriverCard(driver));
         });
-    } else {
-        proContainer.innerHTML = '<p class="placeholder-note">No PRO drivers currently registered.</p>';
-    }
 
-    // Render PRO-AM Drivers
-    if (proAmDrivers.length > 0) {
-        proAmDrivers.forEach(driver => {
-            proAmContainer.appendChild(createDriverCard(driver));
-        });
-    } else {
-        proAmContainer.innerHTML = '<p class="placeholder-note">No PRO-AM drivers currently registered.</p>';
-    }
+        container.appendChild(teamGroup);
+    });
 }
 
 
@@ -133,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleButton = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
 
+    // Fungsionalitas Menu Toggle (Menu Hamburger)
     if (toggleButton && navMenu) {
         toggleButton.addEventListener('click', () => {
             navMenu.classList.toggle('active');
